@@ -1,0 +1,7 @@
+{
+  "node_id": "root-readme",
+  "path": "README.md",
+  "title": "agent-protocols",
+  "role": "entrypoint",
+  "summary": "リポジトリ全体の入口。読む順番と主要文書へのリンクを持つ。"
+}

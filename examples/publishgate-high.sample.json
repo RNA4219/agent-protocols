@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "PG-002",
+  "kind": "PublishGate",
+  "state": "Active",
+  "version": 1,
+  "createdAt": "2026-03-29T14:00:00Z",
+  "updatedAt": "2026-03-29T14:00:00Z",
+  "entityId": "AC-002",
+  "action": "publish",
+  "riskLevel": "high",
+  "requiredApprovals": ["project_lead", "security_reviewer"],
+  "approvals": [
+    {
+      "role": "project_lead",
+      "actorId": "lead-user-001",
+      "decision": "approved",
+      "decidedAt": "2026-03-29T14:30:00Z",
+      "reason": "Changes align with project goals"
+    }
+  ],
+  "finalDecision": "pending",
+  "approvalDeadline": "2026-03-30T14:00:00Z"
+}

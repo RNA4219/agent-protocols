@@ -1,0 +1,192 @@
+{
+  "generated_at": "2026-03-29T23:30:00+09:00",
+  "repo": "agent-protocols",
+  "nodes": [
+    {
+      "id": "root-readme",
+      "path": "README.md",
+      "title": "agent-protocols (Agent)",
+      "role": "agent-entrypoint",
+      "deps_out": ["readme-ja", "readme-en", "requirements", "schemas"]
+    },
+    {
+      "id": "readme-ja",
+      "path": "docs/README-ja.md",
+      "title": "README (Japanese)",
+      "role": "human-docs",
+      "deps_out": ["requirements", "protocol", "operations", "blueprint"]
+    },
+    {
+      "id": "readme-en",
+      "path": "docs/README-en.md",
+      "title": "README (English)",
+      "role": "human-docs",
+      "deps_out": ["requirements", "protocol", "operations", "blueprint"]
+    },
+    {
+      "id": "blueprint",
+      "path": "docs/BLUEPRINT.md",
+      "title": "BLUEPRINT",
+      "role": "blueprint",
+      "deps_out": ["requirements", "protocol", "operations", "evaluation"]
+    },
+    {
+      "id": "runbook",
+      "path": "docs/RUNBOOK.md",
+      "title": "RUNBOOK",
+      "role": "runbook",
+      "deps_out": ["requirements", "protocol", "operations", "implementation-prep", "birdseye-doc"]
+    },
+    {
+      "id": "guardrails",
+      "path": "docs/GUARDRAILS.md",
+      "title": "GUARDRAILS",
+      "role": "guardrails",
+      "deps_out": ["requirements", "protocol", "operations"]
+    },
+    {
+      "id": "evaluation",
+      "path": "docs/EVALUATION.md",
+      "title": "EVALUATION",
+      "role": "evaluation",
+      "deps_out": ["requirements", "protocol", "operations", "implementation-prep"]
+    },
+    {
+      "id": "checklists",
+      "path": "docs/CHECKLISTS.md",
+      "title": "CHECKLISTS",
+      "role": "checklist",
+      "deps_out": ["runbook", "evaluation", "birdseye-doc"]
+    },
+    {
+      "id": "inspection",
+      "path": "docs/INSPECTION.md",
+      "title": "INSPECTION",
+      "role": "inspection",
+      "deps_out": ["evaluation", "checklists"]
+    },
+    {
+      "id": "hub",
+      "path": "docs/HUB.codex.md",
+      "title": "agent-protocols HUB",
+      "role": "hub",
+      "deps_out": ["blueprint", "requirements", "protocol", "operations", "implementation-prep"]
+    },
+    {
+      "id": "task",
+      "path": "docs/TASK.codex.md",
+      "title": "TASK",
+      "role": "task",
+      "deps_out": ["hub"]
+    },
+    {
+      "id": "requirements",
+      "path": "docs/requirements.md",
+      "title": "requirements",
+      "role": "source-of-truth",
+      "deps_out": ["protocol", "operations", "implementation-prep", "schemas"]
+    },
+    {
+      "id": "protocol",
+      "path": "docs/protocol.md",
+      "title": "protocol",
+      "role": "protocol-spec",
+      "deps_out": ["requirements", "operations", "implementation-prep"]
+    },
+    {
+      "id": "operations",
+      "path": "docs/operations.md",
+      "title": "operations",
+      "role": "operations-policy",
+      "deps_out": ["requirements", "protocol", "implementation-prep"]
+    },
+    {
+      "id": "implementation-prep",
+      "path": "docs/implementation-prep.md",
+      "title": "implementation-prep",
+      "role": "implementation-prep",
+      "deps_out": ["requirements", "protocol", "operations"]
+    },
+    {
+      "id": "birdseye-doc",
+      "path": "docs/BIRDSEYE.md",
+      "title": "BIRDSEYE",
+      "role": "birdseye-guide",
+      "deps_out": ["birdseye-index", "birdseye-hot"]
+    },
+    {
+      "id": "birdseye-index",
+      "path": "docs/birdseye/index.json",
+      "title": "birdseye-index",
+      "role": "birdseye-index",
+      "deps_out": []
+    },
+    {
+      "id": "birdseye-hot",
+      "path": "docs/birdseye/hot.json",
+      "title": "birdseye-hot",
+      "role": "birdseye-hot",
+      "deps_out": []
+    },
+    {
+      "id": "schemas",
+      "path": "schemas/",
+      "title": "JSON Schemas",
+      "role": "schema",
+      "deps_out": ["requirements"],
+      "files": [
+        "common.schema.json",
+        "IntentContract.schema.json",
+        "TaskSeed.schema.json",
+        "Acceptance.schema.json",
+        "PublishGate.schema.json",
+        "Evidence.schema.json"
+      ]
+    },
+    {
+      "id": "examples",
+      "path": "examples/",
+      "title": "Sample JSON",
+      "role": "example",
+      "deps_out": ["schemas"],
+      "files": [
+        "intent.sample.json",
+        "taskseed.sample.json",
+        "acceptance.sample.json",
+        "publishgate-low.sample.json",
+        "publishgate-high.sample.json",
+        "evidence.sample.json"
+      ]
+    },
+    {
+      "id": "src-validation",
+      "path": "src/validation/",
+      "title": "Semantic Validator",
+      "role": "implementation",
+      "deps_out": ["schemas"],
+      "files": ["semantic-validator.ts", "index.ts"]
+    },
+    {
+      "id": "tests-schema",
+      "path": "tests/schema/",
+      "title": "Schema Tests",
+      "role": "test",
+      "deps_out": ["schemas", "examples"]
+    },
+    {
+      "id": "tests-validation",
+      "path": "tests/validation/",
+      "title": "Validation Tests",
+      "role": "test",
+      "deps_out": ["src-validation"]
+    },
+    {
+      "id": "scripts",
+      "path": "scripts/",
+      "title": "Scripts",
+      "role": "script",
+      "deps_out": ["src-validation", "schemas"],
+      "files": ["demo.ts"]
+    }
+  ]
+}

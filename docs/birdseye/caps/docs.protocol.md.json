@@ -1,0 +1,7 @@
+{
+  "node_id": "protocol",
+  "path": "docs/protocol.md",
+  "title": "protocol",
+  "role": "protocol-spec",
+  "summary": "契約型、イベント、状態遷移、risk 判定を実装者向けに再編した仕様。"
+}

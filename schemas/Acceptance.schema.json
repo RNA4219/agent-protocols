@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-protocols/schemas/Acceptance.schema.json",
+  "title": "Acceptance",
+  "description": "Validation result for TaskSeed execution",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json"
+    },
+    {
+      "type": "object",
+      "required": [
+        "taskSeedId",
+        "status",
+        "details",
+        "criteria",
+        "generationPolicy"
+      ],
+      "properties": {
+        "kind": {
+          "const": "Acceptance"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^AC-[0-9]{3,}$"
+        },
+        "taskSeedId": {
+          "type": "string",
+          "pattern": "^TS-[0-9]{3,}$",
+          "description": "Reference to source TaskSeed"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "passed", "failed", "blocked"],
+          "description": "Acceptance verification status"
+        },
+        "details": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Details of acceptance result"
+        },
+        "criteria": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "description": "Acceptance criteria checked"
+        },
+        "generationPolicy": {
+          "type": "object",
+          "required": ["auto_activate", "requiredActivationApprovals"],
+          "properties": {
+            "auto_activate": {
+              "type": "boolean",
+              "description": "Whether to auto-activate without approval"
+            },
+            "requiredActivationApprovals": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["project_lead", "security_reviewer", "release_manager", "admin"]
+              },
+              "uniqueItems": true,
+              "description": "Roles required for activation approval"
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "auto_activate": {
+                    "const": false
+                  }
+                },
+                "required": ["auto_activate"]
+              },
+              "then": {
+                "properties": {
+                  "requiredActivationApprovals": {
+                    "type": "array",
+                    "minItems": 1
+                  }
+                }
+              }
+            }
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

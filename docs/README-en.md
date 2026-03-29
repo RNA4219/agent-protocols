@@ -1,0 +1,109 @@
+# agent-protocols
+
+Contract-driven AI workflow protocol specifications.
+
+## Overview
+
+`agent-protocols` defines specifications for managing AI agent tasks using contract-based orchestration. It specifies 5 contract types, state transitions, and approval workflows.
+
+## Target Audience
+
+- Product Owners: Refer to requirements layer
+- Implementers: Refer to requirements + protocol specification layers
+- Operators/Auditors: Refer to operations policy layer
+
+## Document Structure
+
+| Document | Role |
+|---|---|
+| [BLUEPRINT.md](BLUEPRINT.md) | Overall purpose, non-goals, design principles |
+| [requirements.md](requirements.md) | Authoritative requirements |
+| [protocol.md](protocol.md) | Protocol specification for implementers |
+| [operations.md](operations.md) | Operations and audit policies |
+| [implementation-prep.md](implementation-prep.md) | Implementation preparation guide |
+| [RUNBOOK.md](RUNBOOK.md) | Runbook |
+| [CHECKLISTS.md](CHECKLISTS.md) | Checklists |
+| [INSPECTION.md](INSPECTION.md) | Inspection report |
+
+## Contract Flow
+
+```
+IntentContract → TaskSeed → Acceptance → PublishGate → Evidence
+    (intent)    →  (task)  → (verify)   →  (approve)  →  (record)
+```
+
+1. **IntentContract**: Define user intent and required capabilities
+2. **TaskSeed**: Decompose into executable work units
+3. **Acceptance**: Verify execution results
+4. **PublishGate**: Approve or reject publication
+5. **Evidence**: Record execution audit trail
+
+## Approval Rules
+
+| Risk Level | Required Approvals | Auto-Approved |
+|---|---|---|
+| low | none | ✓ |
+| medium | none | ✓ |
+| high | project_lead, security_reviewer | ✗ |
+| critical | project_lead, security_reviewer, release_manager | ✗ |
+
+## Capabilities
+
+| Capability | Description |
+|---|---|
+| `read_repo` | Repository read access |
+| `write_repo` | Repository write access |
+| `install_deps` | Install dependencies |
+| `network_access` | Network access |
+| `read_secrets` | Read secrets |
+| `publish_release` | Publish releases |
+
+## State Transitions
+
+```
+Draft → Active → Frozen → Published → Superseded → Revoked → Archived
+```
+
+- **Draft**: Created, editable
+- **Active**: Ready for execution
+- **Frozen**: Paused, needs investigation
+- **Published**: Finalized
+- **Superseded**: Replaced by newer version
+- **Revoked**: Invalidated
+- **Archived**: Stored for records
+
+## Implementation Status
+
+| Milestone | Status | Content |
+|---|---|---|
+| M1: Contract Baseline | ✅ | 6 JSON Schemas, 6 sample files |
+| M2: Validation Baseline | ✅ | Semantic validator |
+| M3: Orchestration Baseline | ✅ | Orchestrator |
+| M4: Approval Baseline | ✅ | Policy engine |
+
+## Quick Start
+
+```bash
+# Install dependencies
+npm install
+
+# Run tests
+npm test
+
+# Run demo
+npx tsx scripts/demo.ts
+```
+
+## Test Results
+
+- Tests: 83
+- Coverage: schemas, semantic validation
+
+## Related Links
+
+- [README (Japanese)](README-ja.md)
+- [Root README (Agent-focused)](../README.md)
+
+## License
+
+See [LICENSE](../LICENSE).

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "AC-001",
+  "kind": "Acceptance",
+  "state": "Active",
+  "version": 1,
+  "createdAt": "2026-03-29T12:00:00Z",
+  "updatedAt": "2026-03-29T12:00:00Z",
+  "taskSeedId": "TS-001",
+  "status": "passed",
+  "details": "All acceptance criteria verified successfully",
+  "criteria": [
+    "Login endpoint returns valid token",
+    "Logout endpoint clears session",
+    "Unit tests pass with 100% coverage",
+    "No security vulnerabilities detected"
+  ],
+  "generationPolicy": {
+    "auto_activate": true,
+    "requiredActivationApprovals": []
+  }
+}

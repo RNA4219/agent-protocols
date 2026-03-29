@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "IC-001",
+  "kind": "IntentContract",
+  "state": "Active",
+  "version": 1,
+  "createdAt": "2026-03-29T10:00:00Z",
+  "updatedAt": "2026-03-29T10:00:00Z",
+  "intent": "Implement user authentication module",
+  "creator": "dev-user-001",
+  "priority": "medium",
+  "requestedCapabilities": ["read_repo", "write_repo"]
+}

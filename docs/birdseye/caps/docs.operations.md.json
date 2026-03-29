@@ -1,0 +1,7 @@
+{
+  "node_id": "operations",
+  "path": "docs/operations.md",
+  "title": "operations",
+  "role": "operations-policy",
+  "summary": "承認、監査、stale、lock、ログ保持など運用規則を定義する。"
+}

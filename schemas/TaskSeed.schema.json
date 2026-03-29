@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-protocols/schemas/TaskSeed.schema.json",
+  "title": "TaskSeed",
+  "description": "Executable work unit derived from IntentContract",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json"
+    },
+    {
+      "type": "object",
+      "required": [
+        "intentId",
+        "description",
+        "ownerRole",
+        "executionPlan",
+        "requestedCapabilitiesSnapshot",
+        "generationPolicy"
+      ],
+      "properties": {
+        "kind": {
+          "const": "TaskSeed"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^TS-[0-9]{3,}$"
+        },
+        "intentId": {
+          "type": "string",
+          "pattern": "^IC-[0-9]{3,}$",
+          "description": "Reference to source IntentContract"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Task description"
+        },
+        "ownerRole": {
+          "type": "string",
+          "enum": ["developer", "ci_agent", "qa", "project_lead", "release_manager", "admin"],
+          "description": "Role responsible for execution"
+        },
+        "executionPlan": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "description": "Ordered list of execution steps"
+        },
+        "requestedCapabilitiesSnapshot": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "read_repo",
+              "write_repo",
+              "install_deps",
+              "network_access",
+              "read_secrets",
+              "publish_release"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Snapshot of IntentContract.requestedCapabilities"
+        },
+        "generationPolicy": {
+          "type": "object",
+          "required": ["auto_activate", "requiredActivationApprovals"],
+          "properties": {
+            "auto_activate": {
+              "type": "boolean",
+              "description": "Whether to auto-activate without approval"
+            },
+            "requiredActivationApprovals": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["policy_engine", "project_lead", "security_reviewer", "release_manager", "admin"]
+              },
+              "uniqueItems": true,
+              "description": "Roles required for activation approval"
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "auto_activate": {
+                    "const": false
+                  }
+                },
+                "required": ["auto_activate"]
+              },
+              "then": {
+                "properties": {
+                  "requiredActivationApprovals": {
+                    "type": "array",
+                    "minItems": 1
+                  }
+                }
+              }
+            }
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

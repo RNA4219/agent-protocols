@@ -1,0 +1,19 @@
+{
+  "name": "agent-protocols",
+  "version": "1.0.0",
+  "description": "Contract-driven AI workflow protocols",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "validate": "vitest run tests/schema"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.0",
+    "tsx": "^4.21.0",
+    "vitest": "^3.0.0"
+  },
+  "dependencies": {
+    "ajv-formats": "^3.0.1"
+  }
+}

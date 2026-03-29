@@ -1,0 +1,7 @@
+{
+  "node_id": "implementation-prep",
+  "path": "docs/implementation-prep.md",
+  "title": "implementation-prep",
+  "role": "implementation-prep",
+  "summary": "schema、validation、orchestration、policy の実装準備とマイルストーンを整理する。"
+}

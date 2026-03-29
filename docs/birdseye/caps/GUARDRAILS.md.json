@@ -1,0 +1,7 @@
+{
+  "node_id": "guardrails",
+  "path": "GUARDRAILS.md",
+  "title": "GUARDRAILS",
+  "role": "guardrails",
+  "summary": "変更時の制約、禁止事項、Frozen 優先条件を定義する。"
+}

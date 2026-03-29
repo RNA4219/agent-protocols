@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-protocols/schemas/PublishGate.schema.json",
+  "title": "PublishGate",
+  "description": "Approval gate for publish decisions",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json"
+    },
+    {
+      "type": "object",
+      "required": [
+        "entityId",
+        "action",
+        "riskLevel",
+        "requiredApprovals",
+        "approvals",
+        "finalDecision"
+      ],
+      "properties": {
+        "kind": {
+          "const": "PublishGate"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^PG-[0-9]{3,}$"
+        },
+        "entityId": {
+          "type": "string",
+          "pattern": "^AC-[0-9]{3,}$",
+          "description": "Reference to Acceptance being gated"
+        },
+        "action": {
+          "type": "string",
+          "enum": ["publish", "reject", "hold"],
+          "description": "Action type for this gate"
+        },
+        "riskLevel": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "critical"],
+          "description": "Risk level determined by Policy Engine"
+        },
+        "requiredApprovals": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["project_lead", "security_reviewer", "release_manager", "admin"]
+          },
+          "minItems": 0,
+          "uniqueItems": true,
+          "description": "Roles required for approval (empty for low/medium)"
+        },
+        "approvals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["role", "actorId", "decision", "decidedAt"],
+            "properties": {
+              "role": {
+                "type": "string",
+                "enum": ["policy_engine", "project_lead", "security_reviewer", "release_manager", "admin"],
+                "description": "Role that made this approval decision"
+              },
+              "actorId": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Actor ID of approver"
+              },
+              "decision": {
+                "type": "string",
+                "enum": ["approved", "rejected"],
+                "description": "Approval decision"
+              },
+              "decidedAt": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Timestamp of decision"
+              },
+              "reason": {
+                "type": "string",
+                "description": "Optional reason for decision"
+              }
+            },
+            "additionalProperties": false
+          },
+          "description": "Recorded approvals"
+        },
+        "finalDecision": {
+          "type": "string",
+          "enum": ["pending", "approved", "rejected", "expired"],
+          "description": "Final gate decision"
+        },
+        "approvalDeadline": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Deadline for approval completion"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "requiredApprovals": {
+                "type": "array",
+                "minItems": 1
+              }
+            },
+            "required": ["requiredApprovals"]
+          },
+          "then": {
+            "required": ["approvalDeadline"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "requiredApprovals": {
+                "type": "array",
+                "maxItems": 0
+              }
+            },
+            "required": ["requiredApprovals"]
+          },
+          "then": {
+            "properties": {
+              "finalDecision": {
+                "type": "string",
+                "enum": ["approved", "rejected"]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "unevaluatedProperties": false
+}

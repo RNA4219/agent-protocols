@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "EV-001",
+  "kind": "Evidence",
+  "state": "Published",
+  "version": 1,
+  "createdAt": "2026-03-29T12:30:00Z",
+  "updatedAt": "2026-03-29T12:30:00Z",
+  "taskSeedId": "TS-001",
+  "baseCommit": "a1b2c3d",
+  "headCommit": "e4f5g6h",
+  "inputHash": "sha256:abc123def456",
+  "outputHash": "sha256:ghi789jkl012",
+  "model": {
+    "name": "claude-sonnet-4-6",
+    "version": "20250514",
+    "parametersHash": "sha256:model-hash-001"
+  },
+  "tools": ["Read", "Edit", "Write", "Bash"],
+  "environment": {
+    "os": "Windows 11",
+    "runtime": "Node.js 20.10.0",
+    "containerImageDigest": "sha256:container-001",
+    "lockfileHash": "sha256:lockfile-001"
+  },
+  "staleStatus": {
+    "classification": "fresh",
+    "evaluatedAt": "2026-03-29T12:00:00Z"
+  },
+  "mergeResult": {
+    "status": "merged",
+    "mergedAt": "2026-03-29T12:25:00Z",
+    "strategy": "squash"
+  },
+  "startTime": "2026-03-29T10:01:00Z",
+  "endTime": "2026-03-29T12:00:00Z",
+  "actor": "developer-001",
+  "policyVerdict": "approved",
+  "diffHash": "sha256:diff-hash-001"
+}

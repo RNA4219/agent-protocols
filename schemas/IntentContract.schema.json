@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-protocols/schemas/IntentContract.schema.json",
+  "title": "IntentContract",
+  "description": "Contract representing an intent request with capability requirements",
+  "type": "object",
+  "$defs": {
+    "capability": {
+      "type": "string",
+      "enum": [
+        "read_repo",
+        "write_repo",
+        "install_deps",
+        "network_access",
+        "read_secrets",
+        "publish_release"
+      ],
+      "description": "Capability type that can be requested"
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "common.schema.json"
+    },
+    {
+      "type": "object",
+      "required": [
+        "intent",
+        "creator",
+        "priority",
+        "requestedCapabilities"
+      ],
+      "properties": {
+        "kind": {
+          "const": "IntentContract"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^IC-[0-9]{3,}$"
+        },
+        "intent": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The intent or task description"
+        },
+        "creator": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Actor ID of the intent creator"
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "critical"],
+          "description": "Priority level of the intent"
+        },
+        "requestedCapabilities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/capability"
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Capabilities required for this intent"
+        }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

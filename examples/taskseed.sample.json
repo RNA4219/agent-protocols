@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "TS-001",
+  "kind": "TaskSeed",
+  "state": "Active",
+  "version": 1,
+  "createdAt": "2026-03-29T10:01:00Z",
+  "updatedAt": "2026-03-29T10:01:00Z",
+  "intentId": "IC-001",
+  "description": "Create authentication module with login and logout functionality",
+  "ownerRole": "developer",
+  "executionPlan": [
+    "Read existing auth middleware",
+    "Create new auth module",
+    "Add login endpoint",
+    "Add logout endpoint",
+    "Write unit tests"
+  ],
+  "requestedCapabilitiesSnapshot": ["read_repo", "write_repo"],
+  "generationPolicy": {
+    "auto_activate": true,
+    "requiredActivationApprovals": []
+  }
+}

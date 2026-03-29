@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "PG-001",
+  "kind": "PublishGate",
+  "state": "Published",
+  "version": 1,
+  "createdAt": "2026-03-29T12:01:00Z",
+  "updatedAt": "2026-03-29T12:01:00Z",
+  "entityId": "AC-001",
+  "action": "publish",
+  "riskLevel": "low",
+  "requiredApprovals": [],
+  "approvals": [
+    {
+      "role": "policy_engine",
+      "actorId": "policy-engine-001",
+      "decision": "approved",
+      "decidedAt": "2026-03-29T12:01:00Z"
+    }
+  ],
+  "finalDecision": "approved"
+}

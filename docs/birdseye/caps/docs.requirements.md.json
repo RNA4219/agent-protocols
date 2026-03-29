@@ -1,0 +1,7 @@
+{
+  "node_id": "requirements",
+  "path": "docs/requirements.md",
+  "title": "requirements",
+  "role": "source-of-truth",
+  "summary": "契約駆動型 AI ワークフローの要件正本。"
+}
