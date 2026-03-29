@@ -6,6 +6,41 @@ Contract-driven AI workflow protocol specifications.
 
 `agent-protocols` defines specifications for managing AI agent tasks using contract-based orchestration. It specifies 5 contract types, state transitions, and approval workflows.
 
+## Why this exists
+
+This project exists because AI agent operations often become hard to reason about when the system does not clearly define what an agent is allowed to do, when human approval is required, and how execution evidence should be recorded.
+
+In practice, teams often run into problems like these:
+
+- prompts act as the only contract between request and execution
+- low-risk and high-risk operations are not separated clearly
+- manual approval and automatic execution are mixed together
+- audit trails are incomplete or inconsistent
+- the team wants to grow from single-agent runs to multi-agent or swarm workflows without a shared control model
+
+`agent-protocols` is meant to reduce that ambiguity by separating intent, executable work units, verification, publish decisions, and immutable evidence into explicit contracts.
+
+## When to use it
+
+This repository is a good fit when you want to:
+
+- design a control plane for coding-focused AI agents
+- define schemas and validators before building implementation details
+- introduce gated execution with approval boundaries
+- preserve auditability and reproducibility
+- support both single-agent execution and future multi-agent orchestration
+
+If you only need lightweight one-off automation and do not need approval, audit, state transitions, or reproducibility requirements, this specification may be heavier than necessary.
+
+## Benefits
+
+- separates intent, execution, verification, approval, and evidence into explicit responsibilities
+- makes low / medium / high / critical handling predictable
+- standardizes when execution can be automatic versus human-gated
+- supports a clean split between JSON Schema validation and semantic validation
+- makes the system easier to onboard to with Birdseye and supporting docs
+- gives teams a reusable protocol that can survive runtime or agent changes
+
 ## Target Audience
 
 - Product Owners: Refer to requirements layer
