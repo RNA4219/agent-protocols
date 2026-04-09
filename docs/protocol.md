@@ -203,6 +203,21 @@
 - `baseCommit == headCommit` は許容
 - コンテナ未使用環境では `containerImageDigest = "uncontainerized"`
 
+### 9.4 workflow-cookbook 連携
+
+- `workflow-cookbook` は `StructuredLogger` plugin を通じて `Evidence` を生成できる。
+- 連携時の入力コンテキストは少なくとも次を含む。
+  - `evidence_id`
+  - `task_seed_id`
+  - `base_commit`
+  - `head_commit`
+  - `actor`
+- `inputHash` / `outputHash` / `diffHash` / `model.parametersHash` は
+  `workflow-cookbook` 側で正規化入力から導出できる。
+- 参照実装と sample config は次を参照する。
+  - [`workflow-cookbook/tools/protocols/README.md`](C:/Users/ryo-n/Codex_dev/workflow-cookbook/tools/protocols/README.md)
+  - [`workflow-cookbook/examples/inference_plugins.agent_protocol.sample.json`](C:/Users/ryo-n/Codex_dev/workflow-cookbook/examples/inference_plugins.agent_protocol.sample.json)
+
 ## 10. 実装境界
 本書から実装へ落とすときの責務境界は以下です。
 

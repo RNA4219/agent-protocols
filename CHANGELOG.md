@@ -12,6 +12,7 @@
 - 0006 `tests/schema/schema-validation.test.ts` と `tests/validation/semantic-validator.test.ts` を追加し、83 件の検証を自動化
 - 0007 [docs/BIRDSEYE.md](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/BIRDSEYE.md) と `docs/birdseye/*` を追加し、最小 Birdseye 索引を整備
 - 0008 `docs/README-ja.md` `docs/README-en.md` `docs/INSPECTION.md` を含む文書セットを追加し、入口・検収・読者別導線を整理
+- 0009 `workflow-cookbook` の `StructuredLogger` plugin による `Evidence` 連携導線を README / protocol / operations に追記し、参照 config・plugin guide・consumer sample への相互リンクを追加
 
 ### Notes
 

@@ -102,6 +102,17 @@ npx tsx scripts/demo.ts    # Run demo script
 
 [docs/requirements.md](docs/requirements.md) is the authoritative specification.
 
+## Integrations
+
+- [`workflow-cookbook`](C:/Users/ryo-n/Codex_dev/workflow-cookbook/README.md)
+  can emit `Evidence` records through its `StructuredLogger` plugin system.
+- Reference plugin guide:
+  [`tools/protocols/README.md`](C:/Users/ryo-n/Codex_dev/workflow-cookbook/tools/protocols/README.md)
+- Reference plugin config sample:
+  [`examples/inference_plugins.agent_protocol.sample.json`](C:/Users/ryo-n/Codex_dev/workflow-cookbook/examples/inference_plugins.agent_protocol.sample.json)
+- Reference Evidence consumer sample:
+  [`examples/agent_protocol_evidence_consumer.sample.py`](C:/Users/ryo-n/Codex_dev/workflow-cookbook/examples/agent_protocol_evidence_consumer.sample.py)
+
 ## Key Files
 
 | Path | Purpose |

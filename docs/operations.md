@@ -101,6 +101,20 @@
 - 再現できるか: commit / hash / model / environment
 - 競合や stale の影響があったか: `staleStatus`, `mergeResult`
 
+### 6.3 workflow-cookbook からの受け入れ
+
+- `workflow-cookbook` 連携では、`StructuredLogger` plugin が `Evidence` JSON Lines
+  を出力し、それを受け側の保存先へ取り込む運用を想定する。
+- 受け入れ前に次を確認する。
+  - `taskSeedId` が既存 TaskSeed と結びつくこと
+  - `actor` が追跡対象の実行主体を示すこと
+  - `policyVerdict` と `approvalsSnapshot` が監査方針に合うこと
+  - `environment.containerImageDigest` が未使用環境では `uncontainerized` であること
+- 参照実装と plugin config sample は次を利用する。
+  - [`workflow-cookbook/examples/agent_protocol_evidence_consumer.sample.py`](C:/Users/ryo-n/Codex_dev/workflow-cookbook/examples/agent_protocol_evidence_consumer.sample.py)
+  - [`workflow-cookbook/tools/protocols/README.md`](C:/Users/ryo-n/Codex_dev/workflow-cookbook/tools/protocols/README.md)
+  - [`workflow-cookbook/examples/inference_plugins.agent_protocol.sample.json`](C:/Users/ryo-n/Codex_dev/workflow-cookbook/examples/inference_plugins.agent_protocol.sample.json)
+
 ## 7. ログ保持
 
 ### 7.1 保存期間
