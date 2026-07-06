@@ -1,7 +1,7 @@
 # agent-protocols Operations Policy
 
 ## 1. 位置づけ
-本書は [requirements.md](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/requirements.md) を運用・監査観点に再編した文書です。実装手順ではなく、実行時の判断規則と証跡要求を定義します。
+本書は [requirements.md](requirements.md) を運用・監査観点に再編した文書です。実装手順ではなく、実行時の判断規則と証跡要求を定義します。
 
 ## 2. ロール
 
@@ -111,9 +111,9 @@
   - `policyVerdict` と `approvalsSnapshot` が監査方針に合うこと
   - `environment.containerImageDigest` が未使用環境では `uncontainerized` であること
 - 参照実装と plugin config sample は次を利用する。
-  - [`workflow-cookbook/examples/agent_protocol_evidence_consumer.sample.py`](C:/Users/ryo-n/Codex_dev/workflow-cookbook/examples/agent_protocol_evidence_consumer.sample.py)
-  - [`workflow-cookbook/tools/protocols/README.md`](C:/Users/ryo-n/Codex_dev/workflow-cookbook/tools/protocols/README.md)
-  - [`workflow-cookbook/examples/inference_plugins.agent_protocol.sample.json`](C:/Users/ryo-n/Codex_dev/workflow-cookbook/examples/inference_plugins.agent_protocol.sample.json)
+  - [`workflow-cookbook/examples/agent_protocol_evidence_consumer.sample.py`](../../workflow-cookbook/examples/agent_protocol_evidence_consumer.sample.py)
+  - [`workflow-cookbook/tools/protocols/README.md`](../../workflow-cookbook/tools/protocols/README.md)
+  - [`workflow-cookbook/examples/inference_plugins.agent_protocol.sample.json`](../../workflow-cookbook/examples/inference_plugins.agent_protocol.sample.json)
 
 ## 7. ログ保持
 

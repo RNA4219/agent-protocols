@@ -20,8 +20,8 @@
 
 ## いま決まっていること
 
-- 要件正本は [docs/requirements.md](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/requirements.md)
-- 実装準備は [docs/implementation-prep.md](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/implementation-prep.md)
+- 要件正本は [docs/requirements.md](requirements.md)
+- 実装準備は [docs/implementation-prep.md](implementation-prep.md)
 - low / medium は自動承認、high / critical は人間承認
 - Evidence は不変記録として `Published` 状態で保存
 
@@ -34,6 +34,6 @@
 
 ## 参照
 
-- [docs/protocol.md](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/protocol.md)
-- [docs/operations.md](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/operations.md)
-- [EVALUATION.md](C:/Users/ryo-n/Codex_dev/agent-protocols/EVALUATION.md)
+- [docs/protocol.md](protocol.md)
+- [docs/operations.md](operations.md)
+- [EVALUATION.md](../EVALUATION.md)

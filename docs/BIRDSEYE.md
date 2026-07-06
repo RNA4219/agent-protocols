@@ -5,8 +5,8 @@ Birdseye は、`agent-protocols` の主要ドキュメントを軽量に把握�
 
 ## 構成
 
-- [docs/birdseye/index.json](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/birdseye/index.json): ノード一覧と隣接関係
-- [docs/birdseye/hot.json](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/birdseye/hot.json): 優先読込対象
+- [docs/birdseye/index.json](birdseye/index.json): ノード一覧と隣接関係
+- [docs/birdseye/hot.json](birdseye/hot.json): 優先読込対象
 - `docs/birdseye/caps/*.json`: 各ファイルの軽量カプセル
 
 ## 読み方

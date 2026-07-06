@@ -1,7 +1,7 @@
 # agent-protocols Protocol Specification
 
 ## 1. 位置づけ
-本書は [requirements.md](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/requirements.md) を正本とし、その内容を実装者向けのプロトコル仕様へ再構成した補助仕様です。規範判断が衝突した場合は `requirements.md` を優先します。
+本書は [requirements.md](requirements.md) を正本とし、その内容を実装者向けのプロトコル仕様へ再構成した補助仕様です。規範判断が衝突した場合は `requirements.md` を優先します。
 
 対象スコープは以下です。
 
@@ -215,8 +215,8 @@
 - `inputHash` / `outputHash` / `diffHash` / `model.parametersHash` は
   `workflow-cookbook` 側で正規化入力から導出できる。
 - 参照実装と sample config は次を参照する。
-  - [`workflow-cookbook/tools/protocols/README.md`](C:/Users/ryo-n/Codex_dev/workflow-cookbook/tools/protocols/README.md)
-  - [`workflow-cookbook/examples/inference_plugins.agent_protocol.sample.json`](C:/Users/ryo-n/Codex_dev/workflow-cookbook/examples/inference_plugins.agent_protocol.sample.json)
+  - [`workflow-cookbook/tools/protocols/README.md`](../../workflow-cookbook/tools/protocols/README.md)
+  - [`workflow-cookbook/examples/inference_plugins.agent_protocol.sample.json`](../../workflow-cookbook/examples/inference_plugins.agent_protocol.sample.json)
 
 ## 10. 実装境界
 本書から実装へ落とすときの責務境界は以下です。

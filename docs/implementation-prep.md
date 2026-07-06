@@ -1,7 +1,7 @@
 # agent-protocols Implementation Prep
 
 ## 1. 目的
-本書は、[requirements.md](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/requirements.md) を実装へ落とし込む前段の準備項目を整理するための実装準備書です。
+本書は、[requirements.md](requirements.md) を実装へ落とし込む前段の準備項目を整理するための実装準備書です。
 
 対象は以下です。
 
@@ -12,9 +12,9 @@
 
 ## 2. 正本ドキュメント
 
-- 要件正本: [requirements.md](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/requirements.md)
-- プロトコル仕様: [protocol.md](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/protocol.md)
-- 運用ポリシー: [operations.md](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/operations.md)
+- 要件正本: [requirements.md](requirements.md)
+- プロトコル仕様: [protocol.md](protocol.md)
+- 運用ポリシー: [operations.md](operations.md)
 
 ## 3. 推奨ファイル構成
 

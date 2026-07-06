@@ -18,20 +18,20 @@ next_review_due: 2026-04-29
 
 ## 2. 入口ファイル
 
-- [README.md](C:/Users/ryo-n/Codex_dev/agent-protocols/README.md)
-- [BLUEPRINT.md](C:/Users/ryo-n/Codex_dev/agent-protocols/BLUEPRINT.md)
-- [RUNBOOK.md](C:/Users/ryo-n/Codex_dev/agent-protocols/RUNBOOK.md)
-- [GUARDRAILS.md](C:/Users/ryo-n/Codex_dev/agent-protocols/GUARDRAILS.md)
-- [EVALUATION.md](C:/Users/ryo-n/Codex_dev/agent-protocols/EVALUATION.md)
-- [CHECKLISTS.md](C:/Users/ryo-n/Codex_dev/agent-protocols/CHECKLISTS.md)
+- [README.md](../README.md)
+- [BLUEPRINT.md](../BLUEPRINT.md)
+- [RUNBOOK.md](../RUNBOOK.md)
+- [GUARDRAILS.md](../GUARDRAILS.md)
+- [EVALUATION.md](../EVALUATION.md)
+- [CHECKLISTS.md](../CHECKLISTS.md)
 
 ## 3. docs の分類
 
-- 要件正本: [docs/requirements.md](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/requirements.md)
-- プロトコル仕様: [docs/protocol.md](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/protocol.md)
-- 運用ポリシー: [docs/operations.md](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/operations.md)
-- 実装準備: [docs/implementation-prep.md](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/implementation-prep.md)
-- Birdseye 説明: [docs/BIRDSEYE.md](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/BIRDSEYE.md)
+- 要件正本: [docs/requirements.md](requirements.md)
+- プロトコル仕様: [docs/protocol.md](protocol.md)
+- 運用ポリシー: [docs/operations.md](operations.md)
+- 実装準備: [docs/implementation-prep.md](implementation-prep.md)
+- Birdseye 説明: [docs/BIRDSEYE.md](BIRDSEYE.md)
 
 ## 4. 推奨読み順
 
