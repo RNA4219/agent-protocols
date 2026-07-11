@@ -2,7 +2,7 @@
 
 ## 基本方針
 
-- 正本は常に [docs/requirements.md](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/requirements.md)
+- 正本は常に [docs/requirements.md](requirements.md)
 - 実装準備文書は正本を補助するために存在し、上書きしてはならない
 - schema と運用ルールのどちらか片方だけを更新しない
 
@@ -16,10 +16,10 @@
 
 ## 作業前に確認するもの
 
-1. [BLUEPRINT.md](C:/Users/ryo-n/Codex_dev/agent-protocols/BLUEPRINT.md)
-2. [docs/requirements.md](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/requirements.md)
-3. [docs/protocol.md](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/protocol.md)
-4. [docs/operations.md](C:/Users/ryo-n/Codex_dev/agent-protocols/docs/operations.md)
+1. [BLUEPRINT.md](../BLUEPRINT.md)
+2. [docs/requirements.md](requirements.md)
+3. [docs/protocol.md](protocol.md)
+4. [docs/operations.md](operations.md)
 
 ## 承認境界
 
