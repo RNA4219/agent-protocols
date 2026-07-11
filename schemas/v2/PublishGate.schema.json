@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-protocols.rna4219.dev/schemas/v2/PublishGate.schema.json",
+  "title": "PublishGate v2",
+  "type": "object",
+  "allOf": [
+    { "$ref": "https://agent-protocols.rna4219.dev/schemas/v2/common.schema.json" },
+    {
+      "type": "object",
+      "required": ["acceptanceId", "operation", "riskLevel", "requiredApprovals", "approvals", "decision"],
+      "properties": {
+        "kind": { "const": "PublishGate" },
+        "id": { "type": "string", "pattern": "^PublishGate_[0-9A-HJKMNP-TV-Z]{26}$" },
+        "acceptanceId": { "type": "string", "pattern": "^Acceptance_[0-9A-HJKMNP-TV-Z]{26}$" },
+        "operation": { "const": "publish" },
+        "riskLevel": { "enum": ["low", "medium", "high", "critical"] },
+        "requiredApprovals": {
+          "type": "array", "uniqueItems": true,
+          "items": { "enum": ["project_lead", "security_reviewer", "release_manager"] }
+        },
+        "approvals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["role", "actorId", "decision", "decidedAt"],
+            "properties": {
+              "role": { "enum": ["project_lead", "security_reviewer", "release_manager", "policy_engine"] },
+              "actorId": { "type": "string", "minLength": 1 },
+              "decision": { "enum": ["approved", "rejected"] },
+              "decidedAt": { "type": "string", "format": "date-time", "pattern": "Z$" },
+              "reason": { "type": "string", "minLength": 1 }
+            },
+            "additionalProperties": false
+          }
+        },
+        "decision": { "enum": ["pending", "approved", "rejected", "expired"] },
+        "approvalDeadline": { "type": "string", "format": "date-time", "pattern": "Z$" }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

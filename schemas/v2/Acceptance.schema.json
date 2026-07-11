@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-protocols.rna4219.dev/schemas/v2/Acceptance.schema.json",
+  "title": "Acceptance v2",
+  "type": "object",
+  "allOf": [
+    { "$ref": "https://agent-protocols.rna4219.dev/schemas/v2/common.schema.json" },
+    {
+      "type": "object",
+      "required": ["taskSeedId", "status", "details", "criteria", "generationPolicy"],
+      "properties": {
+        "kind": { "const": "Acceptance" },
+        "id": { "type": "string", "pattern": "^Acceptance_[0-9A-HJKMNP-TV-Z]{26}$" },
+        "taskSeedId": { "type": "string", "pattern": "^TaskSeed_[0-9A-HJKMNP-TV-Z]{26}$" },
+        "status": { "enum": ["pending", "passed", "failed", "blocked"] },
+        "details": { "type": "string", "minLength": 1 },
+        "criteria": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+        "generationPolicy": {
+          "type": "object", "required": ["auto_activate", "requiredActivationApprovals"],
+          "properties": {
+            "auto_activate": { "type": "boolean" },
+            "requiredActivationApprovals": {
+              "type": "array", "uniqueItems": true,
+              "items": { "enum": ["project_lead", "security_reviewer", "release_manager", "admin"] }
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}
