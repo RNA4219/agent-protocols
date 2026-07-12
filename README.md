@@ -1,6 +1,6 @@
 # @rna4219/agent-protocols
 
-AI workflow契約の唯一の正本です。v2は破壊的変更であり、Node.js 20以上、ESM、公開 npm scoped package
+AI workflow契約の唯一の正本です。v2は破壊的変更であり、Node.js 24以上、ESM、公開 npm scoped package
 として配布します。
 
 - package: `@rna4219/agent-protocols@2.0.0-beta.1`

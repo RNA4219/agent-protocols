@@ -41,7 +41,7 @@ describe('SemanticValidator', () => {
       tools: ['Read', 'Edit'],
       environment: {
         os: 'Linux',
-        runtime: 'Node.js 20',
+        runtime: 'Node.js 24',
         containerImageDigest: 'sha256:container',
         lockfileHash: 'sha256:lock',
       },
