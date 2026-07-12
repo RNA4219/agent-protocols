@@ -1,126 +1,56 @@
-# agent-protocols
+# @rna4219/agent-protocols
 
-Contract-driven AI workflow protocol specifications.
+AI workflow契約の唯一の正本です。v2は破壊的変更であり、Node.js 24以上、ESM、公開 npm scoped package
+として配布します。
 
-## Purpose
+- package: `@rna4219/agent-protocols@2.0.0-beta.1`
+- 正本Schema: [schemas/v2](./schemas/v2)
+- v1入力Schema: [schemas](./schemas)（移行専用）
+- 正本仕様: [docs/requirements.md](./docs/requirements.md)
+- 参照runtime: [Agent_tools/shipyard-cp](../Agent_tools/shipyard-cp)
 
-Defines 5 contract types for AI agent orchestration:
-- `IntentContract` - Intent request with capability requirements
-- `TaskSeed` - Executable work unit
-- `Acceptance` - Execution verification result
-- `PublishGate` - Approval gate for publish decisions
-- `Evidence` - Immutable execution record
+## 契約フロー
 
-## File Structure
+`IntentContract -> TaskSeed -> Acceptance -> PublishGate -> Evidence`
 
-```
-schemas/           # JSON Schema definitions
-examples/          # Sample JSON files
-src/validation/    # Semantic validator
-tests/             # Test files
-scripts/           # Utility scripts
-docs/              # Documentation
-```
+共通メタデータは `schemaVersion: "2.0.0"`、種別付きULID（例:
+`Acceptance_01J...`）、`revision`、RFC 3339 UTC時刻、`lifecycle`を使います。
+イベントはCloudEvents 1.0です。Evidenceはfinal/revision 1/不変です。
 
-## Contract Flow
+## Public API
 
-```
-IntentContract -> TaskSeed -> Acceptance -> PublishGate -> Evidence
-     IC-xxx     ->  TS-xxx  ->   AC-xxx   ->   PG-xxx   ->  EV-xxx
-```
+`src`から次を公開します。
 
-## ID Prefixes
+- `safeParseContract` / `parseContract`
+- `safeParseEvent` / `parseEvent`
+- `validateTransition` / `validateContractGraph`
+- `deriveGenerationPolicy` / `assessPolicy`
+- `createPublishGate` / `applyApproval` / `expireGate`
+- `createContractId` / `createContractEvent`
 
-| Kind | Prefix | Pattern |
-|---|---|---|
-| IntentContract | IC | `^IC-[0-9]{3,}$` |
-| TaskSeed | TS | `^TS-[0-9]{3,}$` |
-| Acceptance | AC | `^AC-[0-9]{3,}$` |
-| PublishGate | PG | `^PG-[0-9]{3,}$` |
-| Evidence | EV | `^EV-[0-9]{3,}$` |
+safe APIのエラーは `{ code, path, message, source }` です。未知のkind、capability、roleはfail-closedで拒否します。
 
-## States
+## v1移行
 
-`Draft -> Active -> Frozen -> Published -> Superseded -> Revoked -> Archived`
+移行CLIは新規の絶対出力先だけを受け付け、既存出力を上書きしません。
 
-## Approval Rules
-
-| riskLevel | requiredApprovals | autoApproved |
-|---|---|---|
-| low | [] | true |
-| medium | [] | true |
-| high | [project_lead, security_reviewer] | false |
-| critical | [project_lead, security_reviewer, release_manager] | false |
-
-## Capabilities
-
-```
-read_repo, write_repo, install_deps, network_access, read_secrets, publish_release
+```powershell
+agent-protocols migrate-v1 <絶対入力パス> --namespace <名前空間> --out <絶対出力ディレクトリ>
 ```
 
-## Generation Policy Derivation
+出力は `contracts.v2.jsonl`、`id-map.json`、`migration-report.json`です。
 
-```
-IF capabilities IN [read_repo] OR [read_repo, write_repo]:
-  auto_activate = true
-  requiredActivationApprovals = []
-ELSE IF install_deps OR network_access OR read_secrets IN capabilities:
-  auto_activate = false
-  requiredActivationApprovals = [project_lead, security_reviewer]
-ELSE IF publish_release IN capabilities:
-  auto_activate = false
-  requiredActivationApprovals = [project_lead, release_manager]
-```
+## 開発
 
-## Risk Level Derivation
-
-```
-IF productionDataAccess OR externalSecretTransmission OR legalConcern OR rollbackImpossible:
-  riskLevel = critical
-ELSE IF install_deps OR network_access OR read_secrets OR publish_release IN capabilities:
-  riskLevel = high
-ELSE IF write_repo IN capabilities:
-  riskLevel = medium
-ELSE:
-  riskLevel = low
+```powershell
+npm install
+npm test
+npm run typecheck
+npm run lint
+npm run build
+npm run generate:check
+npm run test:package
 ```
 
-## Commands
-
-```bash
-npm install                # Install dependencies
-npm test                   # Run all tests (83 tests)
-npx tsx scripts/demo.ts    # Run demo script
-```
-
-## Human Documentation
-
-- [README (Japanese)](docs/README-ja.md)
-- [README (English)](docs/README-en.md)
-
-## Source of Truth
-
-[docs/requirements.md](docs/requirements.md) is the authoritative specification.
-
-## Integrations
-
-- [`workflow-cookbook`](../workflow-cookbook/README.md)
-  can emit `Evidence` records through its `StructuredLogger` plugin system.
-- Reference plugin guide:
-  [`tools/protocols/README.md`](../workflow-cookbook/tools/protocols/README.md)
-- Reference plugin config sample:
-  [`examples/inference_plugins.agent_protocol.sample.json`](../workflow-cookbook/examples/inference_plugins.agent_protocol.sample.json)
-- Reference Evidence consumer sample:
-  [`examples/agent_protocol_evidence_consumer.sample.py`](../workflow-cookbook/examples/agent_protocol_evidence_consumer.sample.py)
-
-## Key Files
-
-| Path | Purpose |
-|---|---|
-| [schemas/](schemas/) | JSON Schema definitions |
-| [src/validation/](src/validation/) | Semantic validation logic |
-| [docs/requirements.md](docs/requirements.md) | Authoritative requirements |
-| [docs/protocol.md](docs/protocol.md) | Protocol specification |
-| [docs/operations.md](docs/operations.md) | Operations policy |
-| [docs/RUNBOOK.md](docs/RUNBOOK.md) | Runbook |
-| [docs/BLUEPRINT.md](docs/BLUEPRINT.md) | Blueprint |
+契約Schema・型・検証・policy・生成規則は本repoが所有します。ShipyardはDB、イベント配送、retry/lock、scheduler、
+worker実行、runtime adapterだけを所有し、契約判定を重複実装しません。

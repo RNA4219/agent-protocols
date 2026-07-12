@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-protocols.rna4219.dev/schemas/v2/CloudEvent.schema.json",
+  "title": "agent-protocols CloudEvents 1.0",
+  "type": "object",
+  "required": ["specversion", "id", "source", "type", "subject", "time", "data", "correlationid", "causationid", "idempotencykey", "contractrevision"],
+  "properties": {
+    "specversion": { "const": "1.0" },
+    "id": { "type": "string", "minLength": 1 },
+    "source": { "type": "string", "minLength": 1 },
+    "type": { "type": "string", "minLength": 1 },
+    "subject": { "type": "string", "pattern": "^(IntentContract|TaskSeed|Acceptance|PublishGate|Evidence)_[0-9A-HJKMNP-TV-Z]{26}$" },
+    "time": { "type": "string", "format": "date-time", "pattern": "Z$" },
+    "datacontenttype": { "const": "application/json" },
+    "data": { "type": "object" },
+    "correlationid": { "type": "string", "minLength": 1 },
+    "causationid": { "type": "string", "minLength": 1 },
+    "idempotencykey": { "type": "string", "minLength": 1 },
+    "contractrevision": { "type": "integer", "minimum": 1 }
+  },
+  "additionalProperties": true
+}

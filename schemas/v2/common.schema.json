@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-protocols.rna4219.dev/schemas/v2/common.schema.json",
+  "title": "agent-protocols v2 common contract metadata",
+  "type": "object",
+  "required": ["schemaVersion", "id", "kind", "lifecycle", "revision", "createdAt", "updatedAt"],
+  "properties": {
+    "schemaVersion": { "const": "2.0.0" },
+    "id": { "type": "string", "pattern": "^(IntentContract|TaskSeed|Acceptance|PublishGate|Evidence)_[0-9A-HJKMNP-TV-Z]{26}$" },
+    "kind": { "type": "string", "enum": ["IntentContract", "TaskSeed", "Acceptance", "PublishGate", "Evidence"] },
+    "lifecycle": { "type": "string", "enum": ["draft", "active", "frozen", "final", "superseded", "revoked", "archived"] },
+    "revision": { "type": "integer", "minimum": 1 },
+    "createdAt": { "type": "string", "format": "date-time", "pattern": "Z$" },
+    "updatedAt": { "type": "string", "format": "date-time", "pattern": "Z$" }
+  }
+}

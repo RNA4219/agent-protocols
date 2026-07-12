@@ -1,19 +1,42 @@
 {
-  "name": "agent-protocols",
-  "version": "1.0.0",
-  "description": "Contract-driven AI workflow protocols",
+  "name": "@rna4219/agent-protocols",
+  "version": "2.0.0-beta.1",
+  "description": "Canonical v2 contract schemas, types, validation, policy and migration for AI workflows",
   "type": "module",
-  "scripts": {
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "validate": "vitest run tests/schema"
+  "engines": { "node": ">=24" },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": { "agent-protocols": "./dist/cli/index.js" },
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
+    "./migration": { "types": "./dist/migration/index.d.ts", "import": "./dist/migration/index.js" },
+    "./schemas/v2/*": "./schemas/v2/*",
+    "./schemas/v1/*": "./schemas/*",
+    "./package.json": "./package.json"
   },
-  "devDependencies": {
-    "ajv": "^8.17.0",
-    "tsx": "^4.21.0",
-    "vitest": "^3.0.0"
+  "files": ["dist", "schemas", "docs", "README.md", "LICENSE"],
+  "scripts": {
+    "build": "npm run generate && tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "lint": "eslint src scripts",
+    "test": "vitest run",
+    "generate": "node scripts/generate-types.mjs",
+    "generate:check": "node scripts/generate-types.mjs --check",
+    "test:package": "node scripts/package-smoke.mjs",
+    "release:validate": "npm run generate:check && npm run typecheck && npm run lint && npm test && npm run build && npm run test:package",
+    "validate": "npm test"
   },
   "dependencies": {
+    "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.14",
+    "@typescript-eslint/eslint-plugin": "^8.57.1",
+    "@typescript-eslint/parser": "^8.57.1",
+    "eslint": "^9.22.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.8.2",
+    "vitest": "^3.2.4"
   }
 }

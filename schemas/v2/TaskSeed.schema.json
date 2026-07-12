@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-protocols.rna4219.dev/schemas/v2/TaskSeed.schema.json",
+  "title": "TaskSeed v2",
+  "type": "object",
+  "allOf": [
+    { "$ref": "https://agent-protocols.rna4219.dev/schemas/v2/common.schema.json" },
+    {
+      "type": "object",
+      "required": ["intentId", "description", "ownerRole", "executionPlan", "requestedCapabilitiesSnapshot", "generationPolicy"],
+      "properties": {
+        "kind": { "const": "TaskSeed" },
+        "id": { "type": "string", "pattern": "^TaskSeed_[0-9A-HJKMNP-TV-Z]{26}$" },
+        "intentId": { "type": "string", "pattern": "^IntentContract_[0-9A-HJKMNP-TV-Z]{26}$" },
+        "description": { "type": "string", "minLength": 1 },
+        "ownerRole": { "enum": ["developer", "ci_agent", "qa", "project_lead", "release_manager", "admin"] },
+        "executionPlan": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+        "requestedCapabilitiesSnapshot": {
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": { "enum": ["read_repo", "write_repo", "install_deps", "network_access", "read_secrets", "publish_release"] }
+        },
+        "generationPolicy": {
+          "type": "object", "required": ["auto_activate", "requiredActivationApprovals"],
+          "properties": {
+            "auto_activate": { "type": "boolean" },
+            "requiredActivationApprovals": {
+              "type": "array", "uniqueItems": true,
+              "items": { "enum": ["project_lead", "security_reviewer", "release_manager", "admin"] }
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}
