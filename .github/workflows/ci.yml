@@ -54,9 +54,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+          run_install: false
       - name: Build beta package
         working-directory: agent-protocols
         run: npm ci && npm run build && npm pack --pack-destination ../shipyard-cp
       - name: Install and typecheck Shipyard
         working-directory: shipyard-cp
-        run: npm install --no-audit --no-fund ./rna4219-agent-protocols-2.0.0-beta.1.tgz && npm run check
+        run: |
+          node -e "const fs = require('node:fs'); const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8')); pkg.dependencies['@rna4219/agent-protocols'] = 'file:./rna4219-agent-protocols-2.0.0-beta.1.tgz'; fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');"
+          pnpm install --no-frozen-lockfile
+          pnpm run build:packages
+          pnpm run check
